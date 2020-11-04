@@ -46,6 +46,7 @@
 </div>
 <table id="customers">
   <tr>
+      <th>Id</th>
     <th>Name</th>
     <th>Department</th>
     <th>Salary</th>
@@ -57,6 +58,7 @@
 
     {% for item in list %}
         <tr>
+        <td>{{ item.id }}</td>
             <td>{{ item.Name }}</td>
             <td>{{ item.department }}</td>
             <td>{{ item.salary }}</td>

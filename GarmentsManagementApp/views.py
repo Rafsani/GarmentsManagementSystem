@@ -7,7 +7,7 @@ from .models import Employee,Products,Garment,Order
 
 # Create your views here.
 def home(request):
-    return render(request,'index.html')
+    return render(request,'HomePage.html')
 
 def admin_login(request):
     if request.method != 'POST':
