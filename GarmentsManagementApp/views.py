@@ -59,7 +59,7 @@ def AddEmployee(request):
 
         return redirect('/employees/')
 
-
+@login_required(login_url='/login/')
 def ShowEmployees(request):
     if request.method != "POST":
         list = Employee.objects.all()
@@ -74,7 +74,7 @@ def ShowEmployees(request):
             list = Employee.objects.filter(Name=data)
             return render(request, 'ShowEmployees.html', {'list': list})
 
-
+@login_required(login_url='/login/')
 def EditEmployee(request,pk):
     if request.method != "POST":
         data = Employee.objects.get(pk=pk)
@@ -97,13 +97,13 @@ def EditEmployee(request,pk):
         employee.save()
         return redirect('GarmentsManagementApp:ShowEmployee')
 
-
+@login_required(login_url='/login/')
 def deleteEmployee(request,pk):
     employee = Employee.objects.get(pk=pk)
     employee.delete()
     return redirect('GarmentsManagementApp:ShowEmployee')
 
-
+@login_required(login_url='/login/')
 def AddProduct(request):
     if request.method !="POST":
         garments = Garment.objects.all()
@@ -118,11 +118,12 @@ def AddProduct(request):
         p.save()
         return redirect('/ShowProducts/')
 
-
+@login_required(login_url='/login/')
 def ShowProducts(request):
     list = Products.objects.all()
     return render(request,'ShowProducts.html',{'list' : list})
 
+@login_required(login_url='/login/')
 def editProduct(request,pk):
     if request.method != "POST":
         data = Products.objects.get(pk=pk)
@@ -139,7 +140,7 @@ def editProduct(request,pk):
         p.save()
         return redirect('GarmentsManagementApp:ShowProducts')
 
-
+@login_required(login_url='/login/')
 def deleteProduct(request,pk):
     prd = Products.objects.get(pk=pk)
     prd.delete()
@@ -159,12 +160,12 @@ def AddGarment(request):
         G.save()
         return redirect('GarmentsManagementApp:ShowGarments')
 
-
+@login_required(login_url='/login/')
 def ShowGarments(request):
     list = Garment.objects.all()
     return render(request,'ShowGarments.html',{'list' : list})
 
-
+@login_required(login_url='/login/')
 def EditGarment(request,pk):
     if request.method != "POST":
         data = Garment.objects.get(pk=pk)
@@ -178,13 +179,13 @@ def EditGarment(request,pk):
         Gr.save()
         return redirect('GarmentsManagementApp:ShowGarments')
 
-
+@login_required(login_url='/login/')
 def deleteGarment(request,pk):
     prd = Garment.objects.get(pk=pk)
     prd.delete()
     return redirect('GarmentsManagementApp:ShowGarments')
 
-
+@login_required(login_url='/login/')
 def createOrder(request):
     if request.method !="POST":
         list = Products.objects.all()
@@ -204,10 +205,12 @@ def createOrder(request):
         O.save()
         return redirect('GarmentsManagementApp:ShowOrders')
 
+@login_required(login_url='/login/')
 def ShowOrders(request):
     list = Order.objects.all()
     return render(request, 'ShowOrders.html', {'list': list})
 
+@login_required(login_url='/login/')
 def deleteOrder(request,pk):
     Order.objects.get(pk=pk).delete()
     return redirect('GarmentsManagementApp:ShowOrders')
