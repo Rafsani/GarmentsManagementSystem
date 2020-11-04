@@ -45,19 +45,35 @@ def AddEmployee(request):
         name = request.POST["name"]
         department = request.POST["department"]
         salary = request.POST["salary"]
-
+        phone = request.POST["phone"]
+        address = request.POST["address"]
+        status = request.POST["status"]
         employee = Employee()
         employee.Name = name
         employee.department = department
         employee.salary = salary
+        employee.Phone = phone
+        employee.address = address
+        employee.status = status
         employee.save()
 
         return redirect('/employees/')
 
 
 def ShowEmployees(request):
-    list = Employee.objects.all()
-    return render(request,'ShowEmployees.html',{'list' : list})
+    if request.method != "POST":
+        list = Employee.objects.all()
+        return render(request,'ShowEmployees.html',{'list' : list})
+    else:
+        data = request.POST.get('searchname',False)
+        if data == False:
+            data = int(request.POST["searchid"],10)
+            list = Employee.objects.filter(pk=data)
+            return render(request, 'ShowEmployees.html', {'list': list})
+        else:
+            list = Employee.objects.filter(Name=data)
+            return render(request, 'ShowEmployees.html', {'list': list})
+
 
 def EditEmployee(request,pk):
     if request.method != "POST":
@@ -67,11 +83,17 @@ def EditEmployee(request,pk):
         name = request.POST["name"]
         department = request.POST["department"]
         salary = request.POST["salary"]
+        phone = request.POST["phone"]
+        address = request.POST["address"]
+        status = request.POST["status"]
 
         employee = Employee.objects.get(pk=pk)
         employee.Name = name
         employee.department = department
         employee.salary = salary
+        employee.Phone = phone
+        employee.address = address
+        employee.status = status
         employee.save()
         return redirect('GarmentsManagementApp:ShowEmployee')
 

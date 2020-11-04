@@ -17,6 +17,9 @@ class Employee(models.Model):
     Name = models.CharField(max_length=20)
     department = models.CharField(max_length=15)
     salary = models.PositiveIntegerField()
+    Phone = models.CharField(max_length=12,null=True)
+    address = models.CharField(max_length=100,null=True)
+    status = models.CharField(max_length= 20,null=True)
 
 
 class Order(models.Model):

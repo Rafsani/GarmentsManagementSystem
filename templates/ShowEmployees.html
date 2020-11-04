@@ -24,14 +24,34 @@
   color: white;
 }
 </style>
-</head>
-<body>
 
+<div align="center">
+    <form method="POST">
+        {% csrf_token %}
+        <br><br><br><br>
+        <label for="searchname"> Search Employee </label>
+        <input type="text" name="searchname" id="searchname" placeholder="Enter Employee Name">
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+<div align="center">
+    <form method="POST">
+        {% csrf_token %}
+        <br><br>
+        <label for="searchid"> Search Employee </label>
+        <input type="text" name="searchid" id="searchid" placeholder="Enter Employee id">
+        <input type="submit" value="Search"><br><br><br>
+    </form>
+</div>
 <table id="customers">
   <tr>
     <th>Name</th>
     <th>Department</th>
     <th>Salary</th>
+      <th>Phone No</th>
+      <th>Address</th>
+      <th>Status</th>
       <th>Action</th>
   </tr>
 
@@ -40,6 +60,9 @@
             <td>{{ item.Name }}</td>
             <td>{{ item.department }}</td>
             <td>{{ item.salary }}</td>
+            <td>{{ item.Phone }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.status }}</td>
             <td> <a type="button" class="alert-dark" href="{% url 'GarmentsManagementApp:editEmployee' pk=item.id %}">Edit    [] </a> <a type="button" class="alert-danger" href="{% url 'GarmentsManagementApp:deleteEmployee' pk=item.id %}" onclick="alert('Are you sure?')">Delete</a></td>
         </tr>
     {% endfor %}
