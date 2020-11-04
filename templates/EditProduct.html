@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div align="center">
+    <br><br><br><br><br><br><br><br>
+        <form method="POST" >
+            {% csrf_token %}
+            <label for="name"> Name </label>
+            <input type="text" name="name" id="name" required="true" value="{{ data.Name }}"><br><br>
+            <label for="Garment"> Garment </label>
+            <div id="Garment"> {{ data.garment.name }}</div>
+            <br><br>
+            <label for="price"> Price</label>
+            <input type="number" name="price" id="price" required="true" value="{{ data.price }}"><br><br>
+             <label for="description"> Description</label>
+            <input type="text" name="description" id="description" required="true" value="{{ data.description }}"><br><br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+{% endblock %}

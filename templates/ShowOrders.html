@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block content %}
+    <style>
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #26a5b6;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<table id="customers">
+  <tr>
+    <th>Customer Name</th>
+    <th>Phone</th>
+    <th>Product Name</th>
+      <th>Product Description</th>
+      <th>Garments Name</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>Action</th>
+  </tr>
+
+    {% for item in list %}
+        <tr>
+            <td>{{ item.CustomerName}}</td>
+            <td>{{ item.CustomerPhn }}</td>
+            <td>{{ item.product.Name }}</td>
+            <td>{{ item.product.description }}</td>
+            <td>{{ item.product.garment.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.TotalPrice }}</td>
+            <td>  <a type="button" class="alert-danger" href="{% url 'GarmentsManagementApp:deleteOrder' pk=item.id  %}" onclick="alert('Are you sure?')">Delete</a></td>
+        </tr>
+    {% endfor %}
+
+
+</table>
+{% endblock %}

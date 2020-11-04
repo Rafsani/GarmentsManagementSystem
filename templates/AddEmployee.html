@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div align="center">
+    <br><br><br><br><br><br><br><br>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name"> Name </label>
+            <input type="text" name="name" id="name" required="true"><br><br>
+            <label for="department"> department</label>
+            <select name="department" id="department" required="true">
+                <option value="Admin">Admin</option>
+                <option value="Worker">Worker</option>
+                <option value="Office">Office</option>
+                <option value="Sales">Sales</option>
+            </select><br><br>
+            <label for="salary"> Salary</label>
+            <input type="number" name="salary" id="salary" required="true"><br><br>
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}
