@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 class Garment(models.Model):
@@ -6,6 +7,8 @@ class Garment(models.Model):
 
 
 class Products(models.Model):
+    product_id = models.IntegerField(unique=True,default=-1)
+    current_stock = models.IntegerField(null=True)
     garment = models.ForeignKey(Garment,on_delete=models.CASCADE,null=True)
     Name=models.CharField(max_length=20)
     price = models.fields.PositiveIntegerField()
@@ -13,9 +16,23 @@ class Products(models.Model):
 
 
 
+class Department(models.Model):
+    Name = models.CharField(max_length=15)
+    phone = models.CharField(max_length=12)
+    address = models.CharField(max_length=1000, null=True)
+    note = models.CharField(max_length=3000, null=True)
+
+
+class Deparment_Admin(models.Model):
+    user_ref = models.OneToOneField(User,on_delete=models.CASCADE)
+    Department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    role = models.CharField(max_length=20)
+
+
 class Employee(models.Model):
+    EmployeeID = models.IntegerField(unique=True,default=-1)
     Name = models.CharField(max_length=20)
-    department = models.CharField(max_length=15)
+    department = models.ForeignKey(Department,on_delete=models.CASCADE)
     salary = models.PositiveIntegerField()
     Phone = models.CharField(max_length=12,null=True)
     address = models.CharField(max_length=100,null=True)
@@ -23,10 +40,14 @@ class Employee(models.Model):
 
 
 class Order(models.Model):
+    OrderID = models.IntegerField(unique=True,default=-1)
+    Status = models.CharField(max_length= 20,null=True)
     CustomerName = models.CharField(max_length=20)
     CustomerPhn = models.CharField(max_length=12)
     product = models.ForeignKey(Products,on_delete=models.CASCADE)
     quantity = models.IntegerField()
     TotalPrice = models.BigIntegerField()
 
-
+class Shipments(models.Model):
+    product = models.ForeignKey(Products,on_delete=models.CASCADE)
+    delivaryDate = models.DateField()
