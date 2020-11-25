@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .models import Employee,Products,Garment,Order
+from .models import Employee,Products,Garment,Order,Department,Deparment_Admin
 
 # Create your views here.
 def home(request):
@@ -40,10 +40,11 @@ def dashboard(request):
 @login_required(login_url='/login/')
 def AddEmployee(request):
     if request.method !="POST":
-        return render(request,'AddEmployee.html')
+        depts = Department.objects.all()
+        return render(request,'AddEmployee.html',{'depts':depts})
     else:
         name = request.POST["name"]
-        department = request.POST["department"]
+        department = Department.objects.get(pk = request.POST["department"])
         salary = request.POST["salary"]
         phone = request.POST["phone"]
         address = request.POST["address"]

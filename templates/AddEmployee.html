@@ -8,10 +8,9 @@
             <input type="text" name="name" id="name" required="true"><br><br>
             <label for="department"> department</label>
             <select name="department" id="department" required="true">
-                <option value="Admin">Admin</option>
-                <option value="Worker">Worker</option>
-                <option value="Office">Office</option>
-                <option value="Sales">Sales</option>
+               {% for item in depts %}
+                   <option value= {{ item.id }} > {{ item.Name }} </option>
+                {% endfor %}
             </select><br><br>
             <label for="salary"> Salary</label>
             <input type="number" name="salary" id="salary" required="true"><br><br>
