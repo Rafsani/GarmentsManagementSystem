@@ -45,12 +45,14 @@ def AddEmployee(request):
     else:
         name = request.POST["name"]
         department = Department.objects.get(pk = request.POST["department"])
+        Id = request.POST["EmpId"]
         salary = request.POST["salary"]
         phone = request.POST["phone"]
         address = request.POST["address"]
         status = request.POST["status"]
         employee = Employee()
         employee.Name = name
+        employee.EmployeeID = int(Id)
         employee.department = department
         employee.salary = salary
         employee.Phone = phone

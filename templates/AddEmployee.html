@@ -6,6 +6,8 @@
             {% csrf_token %}
             <label for="name"> Name </label>
             <input type="text" name="name" id="name" required="true"><br><br>
+        <label for="EmpId"> Employee Id </label>
+            <input type="text" name="EmpId" id="EmpId" required="true"><br><br>
             <label for="department"> department</label>
             <select name="department" id="department" required="true">
                {% for item in depts %}
