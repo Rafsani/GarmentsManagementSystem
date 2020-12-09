@@ -7,11 +7,10 @@
             <label for="name"> Name </label>
             <input type="text" name="name" id="name" required="true" value="{{ data.Name }}"><br><br>
             <label for="department"> department</label>
-            <select name="department" id="department" required="true" value="{{ data.department }}">
-                <option value="Admin">Admin</option>
-                <option value="Worker">Worker</option>
-                <option value="Office">Office</option>
-                <option value="Sales">Sales</option>
+            <select name="department" id="department" required="true">
+               {% for item in depts %}
+                   <option value= {{ item.id }} > {{ item.Name }} </option>
+                {% endfor %}
             </select><br><br>
             <label for="salary"> Salary</label>
             <input type="number" name="salary" id="salary" required="true" value="{{ data.salary }}"><br><br>

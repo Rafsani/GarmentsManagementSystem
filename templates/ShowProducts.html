@@ -10,6 +10,7 @@
 #customers td, #customers th {
   border: 1px solid #ddd;
   padding: 8px;
+     text-align: -webkit-center;
 }
 
 #customers tr:nth-child(even){background-color: #f2f2f2;}
@@ -19,7 +20,7 @@
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+
   background-color: #26a5b6;
   color: white;
 }
@@ -29,18 +30,22 @@
 
 <table id="customers">
   <tr>
+    <th>Product ID</th>
     <th>Name</th>
     <th>Garment Company</th>
     <th>Price</th>
+      <th>Current Stock</th>
       <th>Description</th>
       <th>Action</th>
   </tr>
 
     {% for item in list %}
         <tr>
+            <td>{{ item.product_id }}</td>
             <td>{{ item.Name }}</td>
             <td>{{ item.garment.name }}</td>
             <td>{{ item.price }}</td>
+            <td>{{ item.current_stock }}</td>
             <td>{{ item.description }}</td>
             <td> <a type="button" class="alert-dark" href="{% url 'GarmentsManagementApp:editProduct' pk=item.id %}">Edit    [] </a> <a type="button" class="alert-danger" href="{% url 'GarmentsManagementApp:deleteProduct' pk=item.id %}" onclick="alert('Are you sure?')">Delete</a></td>
         </tr>

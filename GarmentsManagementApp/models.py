@@ -13,6 +13,7 @@ class Products(models.Model):
     Name=models.CharField(max_length=20)
     price = models.fields.PositiveIntegerField()
     description = models.CharField(max_length=200)
+    workingDaysPerItem = models.IntegerField(null=True)
 
 
 
@@ -44,10 +45,20 @@ class Order(models.Model):
     Status = models.CharField(max_length= 20,null=True)
     CustomerName = models.CharField(max_length=20)
     CustomerPhn = models.CharField(max_length=12)
+    department = models.ForeignKey(Department,on_delete=models.CASCADE,null=True)
     product = models.ForeignKey(Products,on_delete=models.CASCADE)
     quantity = models.IntegerField()
     TotalPrice = models.BigIntegerField()
 
 class Shipments(models.Model):
-    product = models.ForeignKey(Products,on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     delivaryDate = models.DateField()
+
+class Supplier(models.Model):
+    name = models.CharField(max_length=200)
+    Company_Name = models.CharField(max_length=200)
+    Company_Address = models.CharField(max_length=200, null=True)
+    phone = models.CharField(max_length=12, null=True)
+    garment = models.ForeignKey(Garment, on_delete=models.CASCADE, null=True)
+    deliveryDate = models.DateField()

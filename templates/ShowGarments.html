@@ -28,6 +28,8 @@
 
 <table id="customers">
   <tr>
+
+    <th>Id</th>
     <th>Name</th>
     <th>Type</th>
       <th>Action</th>
@@ -35,8 +37,10 @@
 
     {% for item in list %}
         <tr>
+            <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.type }}</td>
+
             <td> <a type="button" class="alert-dark" href="{% url 'GarmentsManagementApp:editGarment' pk=item.id %}">Edit    [] </a> <a type="button" class="alert-danger" href="{% url 'GarmentsManagementApp:deleteGarment' pk=item.id %}" onclick="alert('Are you sure?')">Delete</a></td>
         </tr>
     {% endfor %}

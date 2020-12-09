@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
+
 app_name = 'GarmentsManagementApp'
 urlpatterns = [
     path('',views.home),
@@ -24,4 +26,26 @@ urlpatterns = [
     path('createorder/',views.createOrder,name='createOrder'),
     path('showorders/',views.ShowOrders,name='ShowOrders'),
     path('deleteOrder/<int:pk>/', views.deleteOrder, name='deleteOrder'),
+    path('forward/<int:pk>/',views.forward,name='forwardOrder'),
+    path('reject/<int:pk>/',views.reject,name='rejectOrder'),
+    path('showdepartments/',views.showdepartments,name='ShowDepartments'),
+    path('showSuppliers/',views.showSuppliers,name='ShowSuppliers'),
+    path('showShipments/',views.showShipments,name='showShipments'),
+    path('calculateDate/',views.calculateDeliveryDate,name='calculateDate'),
+
+    path('reset_password/',
+         auth_views.PasswordResetView.as_view(template_name="GarmentsManagementApp/password_reset.html"),
+         name="reset_password"),
+
+    path('reset_password_sent/',
+         auth_views.PasswordResetDoneView.as_view(template_name="GarmentsManagementApp/password_reset_sent.html"),
+         name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(template_name="GarmentsManagementApp/password_reset_form.html"),
+         name="password_reset_confirm"),
+
+    path('reset_password_complete/',
+         auth_views.PasswordResetCompleteView.as_view(template_name="GarmentsManagementApp/password_reset_done.html"),
+         name="password_reset_complete")
 ]
