@@ -326,7 +326,8 @@ def calculateDeliveryDate(request):
         product = Products.objects.get(pk = request.POST["product"])
         quantity = int(request.POST["quant"])
         products = Products.objects.all()
-        noOfWorkingDays = int(product.workingDaysPerItem*quantity)
+        noOfWorkinghour = int(product.workingDaysPerItem*quantity)
+        noOfWorkingDays = int(noOfWorkinghour/10) + 1
         delivarydate = timezone.now().date()
 
         while noOfWorkingDays !=0:
